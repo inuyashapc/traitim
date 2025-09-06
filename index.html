@@ -243,9 +243,39 @@
             }, 10);
         })(document.getElementById('pinkboard'));
     </script>
-    <iframe width="0" height="0" src="https://www.youtube.com/embed/jq2pn8b6q-A?autoplay=1&loop=1&playlist=jq2pn8b6q-A"
-        frameborder="0" allow="autoplay">
-    </iframe>
+- Nút bấm phát nhạc -->
+<button id="playBtn" style="position:fixed; bottom:20px; left:20px; 
+               padding:10px 20px; font-size:16px; 
+               background:#ea80b0; color:white; border:none; 
+               border-radius:8px; cursor:pointer;">
+    🎵 Bật nhạc
+</button>
+
+<!-- YouTube player -->
+<iframe id="ytplayer" width="0" height="0"
+    src="https://www.youtube.com/embed/jq2pn8b6q-A?enablejsapi=1&loop=1&playlist=jq2pn8b6q-A" frameborder="0"
+    allow="autoplay">
+</iframe>
+
+<script>
+    // Hàm tải YouTube API
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('ytplayer');
+    }
+
+    // Bấm nút thì phát nhạc
+    document.getElementById("playBtn").addEventListener("click", () => {
+        if (player) {
+            player.playVideo();
+        }
+    });
+</script>
 
 </BODY>
 
