@@ -259,24 +259,30 @@
 
 
     <script>
-                // Hàm tải YouTube API
-                var tag = document.createElement('script');
-                tag.src = "https://www.youtube.com/iframe_api";
-                var firstScriptTag = document.getElementsByTagName('script')[0];
-                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            // Hàm tải YouTube API
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-                var player;
-                function onYouTubeIframeAPIReady() {
-                    player = new YT.Player('ytplayer');
-                }
+            var player;
 
-                // Bấm nút thì phát nhạc
-                document.getElementById("playBtn").addEventListener("click", () => {
-                    if (player) {
-                        player.playVideo();
+            function onYouTubeIframeAPIReady() {
+            player = new YT.Player('ytplayer', {
+                events: {
+                    'onReady': onPlayerReady
                 }
             });
+        }
+
+            // Chỉ gán sự kiện khi player sẵn sàng
+            function onPlayerReady() {
+                document.getElementById("playBtn").addEventListener("click", () => {
+                player.playVideo();
+            });
+        }
 </script>
+
 
 </BODY>
 
