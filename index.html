@@ -253,8 +253,8 @@
 
     <!-- YouTube player -->
     <iframe id="ytplayer" width="0" height="0"
-        src="https://www.youtube.com/embed/jq2pn8b6q-A?enablejsapi=1&start=16&loop=1&playlist=jq2pn8b6q-A" frameborder="0"
-        allow="autoplay">
+        src="https://www.youtube.com/embed/jq2pn8b6q-A?enablejsapi=1&start=16&loop=1&playlist=jq2pn8b6q-A"
+        frameborder="0" allow="autoplay">
     </iframe>
 
 
@@ -266,23 +266,17 @@
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
             var player;
-
             function onYouTubeIframeAPIReady() {
-            player = new YT.Player('ytplayer', {
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
+            player = new YT.Player('ytplayer');
         }
 
-            // Chỉ gán sự kiện khi player sẵn sàng
-            function onPlayerReady() {
-                document.getElementById("playBtn").addEventListener("click", () => {
+            // Bấm nút thì phát nhạc
+            document.getElementById("playBtn").addEventListener("click", () => {
+            if (player) {
                 player.playVideo();
-            });
-        }
+            }
+        });
 </script>
-
 
 </BODY>
 
